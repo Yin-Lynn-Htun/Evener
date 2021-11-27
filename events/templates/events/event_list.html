@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'events/event_list.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h1>All events</h1>
+
+    <div class="event__items">
+        {% for event in events %}
+            <a href="{% url 'event_detail' event.id %}">
+                <div class="event__item">
+                    <h3 class="event__item--name">{{event.name}}</h3>
+                    <p class="event__item--location">Location :{{event.location}}</p>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+
+{% endblock %}
