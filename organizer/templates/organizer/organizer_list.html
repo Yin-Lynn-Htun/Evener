@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for o in organizers %}
+        <li><a href="{% url 'organizer_detail' o.id %}">{{o.name}}</a></li>
+    {% endfor %}
+{% endblock %}

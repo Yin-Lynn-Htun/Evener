@@ -8,6 +8,13 @@
     {% block css_files %} {% endblock %}
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'index' %}"> Homepage</a></li>
+            <li><a href="{% url 'event_list' %}">All events </a> </li>
+            <li><a href="{% url 'organizer_list' %}">All organizers </a></li>
+        </ul>
+    </nav>
     {% block content %} {% endblock %}
 </body>
 </html>
