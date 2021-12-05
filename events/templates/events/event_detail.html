@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load static %} 
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'events/css/event_list.css' %}" />
+{% endblock %} 
 
 {% block content %}
     <a href="{% url 'event_list' %}">All events</a>
@@ -12,7 +17,7 @@
     <p>Location: {{event.location}}</p>
     <p>Date: {{event.date}}</p>
     <p>Registered count: {{event.registered}}</p>
-    <p>Organizer: {{event.organizer}}</p>
+    <p>Organizer: <a href="{% url 'organizer_detail' event.organizer.id %}"> {{event.organizer.name}} </a></p>
     <p>Detail: {{event.detail|linebreaks}} </p>
 
 {% endblock %}

@@ -12,6 +12,7 @@ def index(request):
 def event_list(request):
     num_events = Event.objects.all().count()
     events = Event.objects.all().order_by("-registered")
+
     return render(request, 'events/event_list.html' , {'events' : events, 'count': num_events})
 
 def event_detail(request, id):

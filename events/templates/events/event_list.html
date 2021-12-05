@@ -12,11 +12,13 @@
         {% for event in events %}
         <a href="{% url 'event_detail' event.id %}">
             <div class="event__item">
+                {% for tag in event.tags.all %}
+                    <span style="color: white; background-color: red; padding: 5px 10px" >{{tag.name}}</span>
+                {% endfor %}
                 <h3 class="event__item--name">{{event.name}}</h3>
                 <p class="event__item--location">Location :{{event.location}}</p>
             </div>
         </a>
         {% endfor %}
     </div>
-
 {% endblock %}

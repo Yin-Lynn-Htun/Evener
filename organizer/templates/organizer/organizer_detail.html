@@ -1,10 +1,39 @@
 {% extends 'base.html' %}
 
+{% load static %} 
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'events/css/event_list.css' %}" />
+{% endblock %} 
+
 {% block content %}
     <a href="{% url 'organizer_list' %}">All organizers</a>
    <div>
        <p>Name : {{organizer.name}}</p>
-       <p>Location: {{organizer.location}}</p>
+       <p>Email: {{organizer.email}}</p>
        <p>Phone number: {{organizer.phone_number}}</p>
+       <p>Street: {{ organizer.address.street }}</p>
+       <p>Postal code : {{ organizer.address.postal_code }}</p>
+       <p>City : {{organizer.address.city }}</p>
+   </div>
+   <div>
+       {% if organizer.events.all %}
+        <h1>All Events by {{ organizer.name}}</h1>
+
+        <div class="event__items">
+                {% for event in organizer.events.all %}
+                    <a href="{% url 'event_detail' event.id %}">
+                        <div class="event__item">
+                            <h3 class="event__item--name">{{event.name}}</h3>
+                            <p class="event__item--location">Location :{{event.location}}</p>
+                        </div>
+                    </a>    
+                {% endfor %}
+            </div>
+
+        {% else %}
+            <h1>{{organizer.name }} does not hold any evnets</h1>
+        {% endif %}
+       
    </div>
 {% endblock %}
